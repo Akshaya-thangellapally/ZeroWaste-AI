@@ -402,4 +402,4 @@ if __name__=="__main__":
     init_db()
     print(f"ZeroWaste AI running at http://localhost:{PORT}")
     print("Demo roles: Manager, Inventory Employee, Cashier, Owner/Admin")
-    ThreadingHTTPServer(("127.0.0.1",PORT),Handler).serve_forever()
+    ThreadingHTTPServer(("0.0.0.0", PORT), Handler).serve_forever()
