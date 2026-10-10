@@ -1,83 +1,223 @@
-# ZeroWaste AI — Runnable Starter
+# ZeroWaste AI — Smarter Stock. Less Waste. Better Profits.
 
-A local, no-extra-packages Python + SQLite demo for the ZeroWaste AI grocery inventory and waste-prevention concept.
+ZeroWaste AI is a grocery inventory management and food-waste prevention project built using Python, SQLite, HTML, CSS, and JavaScript.
+
+It helps grocery stores manage stock, track expiry dates, reduce food waste, recommend discounts, process barcode-based billing, and monitor sales and profits.
+
+The project uses transparent, rule-based decision-support modules to provide useful inventory insights. It is a runnable local prototype designed for demonstration and learning.
+
+## Features
+
+### 1. Inventory Management
+- Add and register products using their barcodes.
+- View and manage available stock.
+- Track batch quantities and expiry dates.
+- Restock existing products without creating duplicate product records.
+- Exclude expired and quarantined stock from sales.
+
+### 2. Barcode-Based Billing
+- Search for products using barcode numbers.
+- Add scanned products to the billing cart.
+- Support USB and Bluetooth barcode scanners that work as keyboard input.
+- Calculate bills and update stock after checkout.
+- Allocate stock using FEFO (First Expiry, First Out).
+
+### 3. Expiry and Waste Prevention
+- Track product expiry dates by batch.
+- Identify products that are expired or approaching expiry.
+- Provide rule-based signals to help prevent food waste.
+- Suggest actions such as prioritizing stock or considering discounts where appropriate.
+
+### 4. Sales and Profit Dashboard
+- View sales history and transaction records.
+- Monitor inventory and sales information.
+- Review purchase costs and selling prices where supported by the application.
+- Use available dashboard insights to support store decisions.
+
+### 5. Purchases and Vendors
+- Record supplier and invoice information.
+- Record received quantities, purchase costs, expiry dates, and optional vendor batch codes.
+- Create new stock batches when products are received.
+- Maintain purchase and stock-movement records.
+
+### 6. Rule-Based AI Decision Support
+The AI Team page contains specialist modules for:
+- Expiry and waste prevention
+- Inventory optimization
+- Demand forecasting guidance
+- Store-transfer readiness
+- Profit optimization
+- Decision coordination
+
+These modules use predefined rules and available inventory or sales data to generate signals and recommendations. They are not trained machine-learning models or autonomous LLM agents.
+
+## Technology Stack
+
+- **Python** — Backend logic and application server
+- **SQLite** — Local database for products, batches, sales, and other supported records
+- **HTML** — Page structure
+- **CSS** — User interface and styling
+- **JavaScript** — Frontend interactions
+- **Python HTTP Server** — Serves the local application without requiring additional Python packages
 
 ## Requirements
-- Python 3.10+ (Python 3.12 recommended)
-- A modern browser
-- Internet is not required to run the app
 
-## Start on Windows
-1. Extract the ZIP file.
-2. Open the extracted `ZeroWasteAI` folder in VS Code.
+- Python 3.10 or newer
+- A modern web browser
+- Visual Studio Code (recommended)
+- No additional Python packages required for the starter version
+- No internet connection required to run the local application
+
+Some browser features, such as camera scanning, require camera permission and a supported browser. Camera access generally works on localhost or HTTPS.
+
+## How to Run the Project on Windows
+
+1. Download and extract the project ZIP file.
+2. Open the extracted `ZeroWasteAI` folder in Visual Studio Code.
 3. Open **Terminal → New Terminal**.
-4. Run:
+4. Run the following command:
 
    ```powershell
    py app.py
    ```
 
-   If `py` is not available, try `python app.py`.
+5. If the `py` command is unavailable, try:
 
-5. Open http://localhost:8000 in your browser.
-6. Press `Ctrl+C` in the terminal to stop the server.
+   ```powershell
+   python app.py
+   ```
 
-The app creates `zerowaste.db` automatically on first run. To reset the demo data, stop the server and delete `zerowaste.db`; it will be recreated next launch.
+6. Open the following address in your browser:
 
-## Barcode billing
-- A USB or Bluetooth scanner that types the scanned digits as keyboard input should work.
-- Click the barcode input and scan. Most scanners send Enter after the barcode; this app uses Enter to look up and add the product.
-- You can test without hardware using the demo barcodes shown in Inventory or:
-  - Milk: `8901030895014`
-  - Bread: `8901725133010`
-  - Rice: `8901234567890`
-  - Yogurt: `8901058001234`
-  - Banana: `8906010500012`
-  - Biscuits: `8904004400019`
-- Unknown barcodes are rejected. Camera scanning is not implemented in this starter.
+   http://localhost:8000
 
-## Demo roles
-Use the role selector in the sidebar to explore:
-- **Manager** — overview, AI signals, inventory, POS, sales
-- **Inventory Employee** — inventory data entry and stock list
-- **Cashier** — POS billing only
-- **Owner/Admin** — starter inventory access; user administration is not implemented yet
+7. Keep the terminal running while using the application.
+8. Press `Ctrl + C` in the terminal to stop the server.
 
-**Important prototype limitation:** the role selector is a local demonstration control, not production authentication. Do not deploy this starter publicly or use it for real payments or real store operations. Production needs secure login, server-verified identities and roles, organization/store isolation, CSRF/session protection, stronger audit controls, payment integration, tax configuration, and automated tests.
+The application creates `zerowaste.db` automatically on its first run, if configured to do so.
 
-## Included
-- Persistent local SQLite data
-- Product/barcode lookup
-- Barcode-first cart flow
-- FEFO batch allocation during checkout
-- Expired and quarantined stock excluded from sale
-- Transactional checkout and stock movements
-- Product registration and batch expiry
-- Overview, five transparent rule-based agent signals, sales history
-- Restock existing products by creating a new expiry-tracked batch (does not duplicate product records)
-- Lattice-inspired parchment/forest/pastel styling
+**Resetting demo data:** Stop the server and delete `zerowaste.db` to recreate the database on the next launch. This permanently removes the existing local database, so back it up first if needed.
 
-## Not yet implemented
-This is an executable starter, not the entire master specification. Camera barcode scanning, real authentication, multi-store transfer execution, supplier purchase orders, refunds, taxes, external AI integrations, management approvals, advanced forecasting, measured impact evaluation, and production security still need implementation. The five items on the AI Team page are currently rule-based specialist modules, not autonomous LLM agents. No API key is required for this offline demo.
+## Barcode Scanning
+
+The application supports barcode input from compatible USB or Bluetooth scanners that type digits like a keyboard.
+
+1. Open the relevant inventory or billing screen.
+2. Click the barcode input field.
+3. Scan the product barcode.
+4. If the scanner sends Enter automatically, the application can use it to look up the product.
+
+Demo barcodes:
+
+| Product | Barcode |
+|---|---|
+| Milk | `8901030895014` |
+| Bread | `8901725133010` |
+| Rice | `8901234567890` |
+| Yogurt | `8901058001234` |
+| Banana | `8906010500012` |
+| Biscuits | `8904004400019` |
+
+Unknown barcodes are rejected unless the product is registered first.
+
+Camera scanning is available only if it is implemented in the version being used. A normal product barcode does not contain the product's expiry date or the quantity received.
+
+## Inventory Batches and FEFO
+
+A product can have multiple batches with different expiry dates.
+
+When receiving stock, record the product, quantity, expiry date, and any optional supplier batch code. Each batch can then be tracked separately.
+
+FEFO stands for **First Expiry, First Out**. It means that eligible stock with the earliest expiry date is allocated for sale first.
+
+The checkout process should exclude expired or quarantined batches and update stock records transactionally.
+
+## Demo Roles
+
+The role selector may provide the following demonstration views, depending on the version:
+
+- **Manager** — Overview, inventory insights, inventory, POS, and sales
+- **Inventory Employee** — Inventory entry and stock list
+- **Cashier** — POS billing
+- **Owner/Admin** — Starter inventory access
+
+These are prototype roles, not secure authentication. Changing a role in the interface does not establish a verified identity.
+
+## Demo Data
+
+The project may include simulated:
+- Products and inventory batches
+- Sales and transactions
+- Supplier and vendor purchase records
+- Stock movements and expiry dates
+
+Demo records are for testing and presentation only. They do not represent real store transactions.
+
+## Project Structure
+
+The exact file structure depends on the version of the project. A typical layout may look like this:
 
 
-## Barcode receiving + batches
-- Inventory staff can use **Scan with camera** in the receiving form on supported browsers (HTTPS or localhost and camera permission required). Chrome on Android is recommended. USB/Bluetooth scanners that type into the barcode field also work.
-- Scan one unit to identify the registered product, then enter the received quantity, expiry date and optional supplier batch code. Save separate batches for different expiry dates/batch lots. A normal barcode does not contain expiry or received quantity.
-- If a barcode is not registered, register the product first. This prototype uses the store's own barcode catalogue; an external product database is not configured.
-- Checkout uses earliest-expiry-first (FEFO) allocation across eligible sellable batches.
-
-## Authentication status
-The login/signup tabs and role-specific fields are prototype UI only. Google OAuth, persistent employee accounts, password hashing, store membership and server-side sessions have **not** been configured. Do not use real credentials or expose this demo publicly. Before production, connect Firebase Authentication (including Google provider) or another identity provider and enforce roles server-side.
-
-
-## Purchases & Vendors
-Use the Purchases & Vendors page to record supplier name, invoice number, registered product barcode, received quantity, unit purchase cost, batch expiry, and optional vendor batch code. A purchase creates a new stock batch and movement record. The page shows purchase history and who recorded each entry. Demo role labels are not secure user authentication.
-
-## Multi-agent AI
-The AI Team page combines rule-based specialist signals for expiry prevention, inventory optimization, demand forecasting guidance, store-transfer readiness, profit optimization, and decision coordination. These are transparent rule-based demo agents, not a trained forecasting model or external LLM integration.
+ZeroWasteAI/
+├── app.py
+├── zerowaste.db
+├── README.md
+├── .gitignore
+├── static/
+│   ├── style.css
+│   └── script.js
+└── templates/
+    └── index.html
 
 
-## Demo dataset included
+The database may be generated automatically when the application starts. Adjust this structure to match the actual files in your project.
 
-This ZIP includes clearly labelled simulated sales, six demo vendor purchase records, four demo suppliers, additional batch inventory with expiry dates, and stock movement records for opening stock and vendor receipts. Demo purchases are labelled DEMO DATA and are not real transactions. Running the app does not need an external service.
+## Design
+
+The interface follows a minimalist **Steep-inspired design** with:
+- White and soft neutral backgrounds
+- Dark text and subtle peach accents
+- Clean typography and generous spacing
+- Rounded cards, inputs, and buttons
+- Simple dashboards focused on readability
+
+Update this description if the actual interface uses a different design.
+
+## Security and Prototype Limitations
+
+This project is a local demonstration prototype. It is not ready for public deployment or real store operations.
+
+Depending on the version, the following may not be implemented:
+- Secure login and signup
+- Google OAuth or another identity provider
+- Password hashing and server-side sessions
+- Server-side role and store-access verification
+- CSRF protection and stronger audit controls
+- Multi-store transfer execution
+- Supplier purchase-order workflows
+- Refunds, tax configuration, and payment integration
+- External AI integrations and trained forecasting models
+- Automated tests and production monitoring
+
+Do not use real passwords, payment details, or sensitive customer information in the demo. Do not expose the local prototype publicly without implementing appropriate security controls.
+
+## Future Improvements
+
+Planned improvements may include:
+- Secure authentication and role-based access control
+- Camera barcode scanning across supported devices
+- More advanced demand forecasting
+- Improved expiry-based discount recommendations
+- Multi-store stock transfers
+- Supplier purchase-order management
+- Refund and tax support
+- External AI integrations where appropriate
+- Automated testing and measured food-waste reduction
+
+These are future enhancements, not claims that the features are already implemented.
+
+## Project Summary
+
+ZeroWaste AI demonstrates how inventory tracking, expiry-aware stock allocation, barcode-based billing, sales records, and transparent rule-based recommendations can work together to help grocery stores manage inventory and reduce avoidable food waste.
+
+**ZeroWaste AI — Smarter Stock. Less Waste. Better Profits.**
